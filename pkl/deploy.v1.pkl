@@ -1,5 +1,8 @@
 class Registry {
-  username: String
+  server: String?
+
+  username: String | List<String>
+
   password: List<String>
 }
 
@@ -9,12 +12,66 @@ class Builder {
 
 class Env {
   clear: Mapping<String, String>?
+
   secret: List<String> | Null = null
 }
 
+class Label {
+  app: String?
+}
+
+class Options {
+  restart: String?
+
+  cpus: Int?
+}
+
+class Boot {
+  limit: Int? | String?
+
+  wait: Int?
+}
+
+class Accessory {
+  service: String?
+
+  image: String
+
+  host: String?
+
+  hosts: List<String>?
+
+  roles: List<String>?
+
+  cmd: String?
+
+  port: Int? | String?
+
+  labels: Label?
+
+  options: Options?
+
+  env: Env?
+
+  files: List<String>?
+
+  directories: List<String>?
+
+  volumes: List<String>?
+}
+
 service: String
+
 image: String
+
 servers: List<String>
+
 registry: Registry
+
 builder: Builder
-env: Env
+
+env: Env?
+
+accessories: Mapping<String, Accessory>?
+
+boot: Boot?

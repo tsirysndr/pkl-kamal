@@ -1,19 +1,193 @@
 class Registry {
-  username: String
+  server: String?
+
+  username: String | List<String>
+
   password: List<String>
 }
 
+class Cache {
+  type: String
+
+  image: String?
+
+  options: String?
+}
+
+class Pack {
+  builder: String
+
+  buildpacks: List<String>
+}
+
 class Builder {
-  arch: "amd64" | "arm64"
+  arch: "amd64" | "arm64" | List<"amd64" | "arm64">
+
+  remote: String?
+
+  dockerfile: String?
+
+  context: String?
+
+  cache: Cache?
 }
 
 class Env {
   clear: Mapping<String, String>?
+
   secret: List<String>?
 }
 
+class Ssh {
+  user: String
+
+  port: Int?
+
+  proxy: String?
+
+  proxy_command: String?
+
+  log_level:String?
+
+  keys: List<String>?
+
+  key_data: List<String>?
+
+  config: Boolean?
+}
+
+class SshKit {
+  max_concurrent_starts: Int?
+
+  pool_idle_timeout: Int?
+}
+
+class Healthcheck {
+  interval: Int?
+
+  path: String?
+
+  timeout: Int?
+}
+
+class Buffering {
+  requests: Boolean?
+
+  responses: Boolean?
+
+  max_request_body: Int?
+
+  max_response_body: Int?
+
+  memory: Int?
+}
+
+class Logging {
+  request_headers: List<String>?
+
+  response_headers: List<String>?
+}
+
+class Ssl {
+  certificate_pem: String
+
+  private_key_pem: String
+}
+
+class Proxy {
+  host: String?
+
+  hosts: List<String>?
+
+  app_port: Int?
+
+  ssl: Boolean? | Ssl?
+
+  ssl_redirect: Boolean?
+
+  forward_headers: Boolean?
+
+  response_timeout: Int?
+
+  path_prefix: String?
+
+  strip_path_prefix: Boolean?
+
+  healthcheck: Healthcheck?
+
+  buffering: Buffering?
+
+  logging: Logging?
+}
+
+class Boot {
+  limit: Int? | String?
+
+  wait: Int?
+}
+
+class Label {
+  app: String?
+}
+
+class Options {
+  restart: String?
+
+  cpus: Int?
+}
+
+class Accessory {
+  service: String?
+
+  image: String
+
+  registry: Registry?
+
+  cmd: String?
+
+  port: Int? | String?
+
+  labels: Label?
+
+  options: Options?
+
+  env: Env?
+
+  files: List<String>?
+
+  directories: List<String>?
+
+  volumes: List<String>?
+
+  network: String?
+
+  proxy: Proxy?
+
+  host: String?
+
+  hosts: List<String>?
+
+  role: String?
+
+  roles: List<String>?
+
+  tag: String?
+
+  tags: List<String>?
+}
+
 service: String
+
 image: String
-servers: List<String>
+
+servers: List<String> | Mapping<String, List<String>>
+
 builder: Builder
+
 env: Env
+
+ssh: Ssh?
+
+boot: Boot?
+
+accessories: Mapping<String, Accessory>?
