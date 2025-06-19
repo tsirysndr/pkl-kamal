@@ -1,0 +1,17 @@
+amends "../../pkl/deploy.v1.pkl"
+
+service = "hey"
+image = "37s/hey"
+servers = List("192.168.0.1", "192.168.0.2")
+registry = new Registry {
+  username = "registry-user-name"
+  password = List("KAMAL_REGISTRY_PASSWORD")
+}
+
+builder = new Builder {
+  arch = "amd64"
+}
+
+env = new Env {
+  secret = List("RAILS_MASTER_KEY")
+}

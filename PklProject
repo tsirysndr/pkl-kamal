@@ -1,0 +1,17 @@
+amends "pkl:Project"
+
+package {
+  name = "kamal"
+  version = "0.1.0"
+  authors {
+    "Tsiry Sandratraina <tsiry.sndr@rocksky.app>"
+  }
+  baseUri = "package://tsirysndr.github.com/pkl-kamal"
+  packageZipUrl = "https://github.com/tsirysndr/pkl-kamal/releases/download/\(name)@\(version)/\(name)@\(version).zip"
+  sourceCode = "https://github.com/tsirysndr/pkl-kamal"
+ // sourceCodeUrlScheme = "https://github.com/tsirysndr/pkl-kamal/blob/\(version)/generated-package%{path}#%{line}-%{endLine}"
+  license = "MIT"
+  description = """
+    Pkl Module for Kamal
+  """
+}

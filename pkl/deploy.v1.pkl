@@ -1,0 +1,20 @@
+class Registry {
+  username: String
+  password: List<String>
+}
+
+class Builder {
+  arch: "amd64" | "arm64"
+}
+
+class Env {
+  clear: Mapping<String, String>?
+  secret: List<String> | Null = null
+}
+
+service: String
+image: String
+servers: List<String>
+registry: Registry
+builder: Builder
+env: Env
